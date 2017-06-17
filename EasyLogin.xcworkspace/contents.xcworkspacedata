@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:EasyLoginFrameworkForMac/EasyLoginDB/EasyLoginDB.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:EasyLoginFrameworkForMac/EasyLoginFramework/EasyLoginFramework.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:EasyLoginAgentForMac/EasyLoginAgent/EasyLoginAgent.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:EasyLoginOD/EasyLoginOD.xcodeproj">
+   </FileRef>
 </Workspace>

@@ -7,3 +7,6 @@
 [submodule "EasyLoginLibrary"]
 	path = EasyLoginLibrary
 	url = git@github.com:EasyLoginProject/EasyLoginLibrary.git
+[submodule "EasyLoginFrameworkForMac"]
+	path = EasyLoginFrameworkForMac
+	url = git@github.com:EasyLoginProject/EasyLoginFrameworkForMac.git

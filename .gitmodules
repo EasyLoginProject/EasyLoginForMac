@@ -1,0 +1,6 @@
+[submodule "EasyLoginAgentForMac"]
+	path = EasyLoginAgentForMac
+	url = git@github.com:EasyLoginProject/EasyLoginAgentForMac.git
+[submodule "EasyLoginOD"]
+	path = EasyLoginOD
+	url = git@github.com:EasyLoginProject/EasyLoginOD.git

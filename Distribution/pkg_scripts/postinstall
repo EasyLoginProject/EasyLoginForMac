@@ -1,0 +1,6 @@
+#!/bin/bash
+
+launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
+launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
+
+exit 0

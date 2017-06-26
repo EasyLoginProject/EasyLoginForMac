@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadContent</key>
+                <dict>
+                    <key>io.easylogin.settings</key>
+                    <dict>
+                        <key>Forced</key>
+                        <array>
+                            <dict>
+                                <key>mcx_preference_settings</key>
+                                <dict>
+                                    <key>baseURL</key>
+                                    <string>http://develop.eu.easylogin.cloud/</string>
+                                </dict>
+                            </dict>
+                        </array>
+                    </dict>
+                </dict>
+                <key>PayloadEnabled</key>
+                <true />
+                <key>PayloadIdentifier</key>
+                <string>io.easylogin.settings.server</string>
+                <key>PayloadType</key>
+                <string>com.apple.ManagedClient.preferences</string>
+                <key>PayloadUUID</key>
+                <string>CA92883C-F2BA-4AB1-8D78-3CA2BC79B05D</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
+            <dict>
+                <key>PayloadType</key>
+                <string>com.apple.MCX</string>
+                <key>PayloadUUID</key>
+                <string>21fc7ecf-2d53-4aef-9f82-d536fbbee431</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>PayloadIdentifier</key>
+                <string>io.easylogin.settings.mobility</string>
+                <key>PayloadDisplayName</key>
+                <string>Mobility</string>
+                <key>com.apple.cachedaccounts.CreateAtLogin</key>
+                <true />
+                <key>com.apple.cachedaccounts.WarnOnCreate</key>
+                <false />
+                <key>cachedaccounts.WarnOnCreate.allowNever</key>
+                <false />
+                <key>com.apple.cachedaccounts.CreatePHDAtLogin</key>
+                <false />
+                <key>cachedaccounts.create.location</key>
+                <string>startup</string>
+                <key>cachedaccounts.expiry.delete.disusedSeconds</key>
+                <integer>-1</integer>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>Settings used by the EasyLogin agent to reach your directory server</string>
+        <key>PayloadDisplayName</key>
+        <string>EasyLogin settings</string>
+        <key>PayloadIdentifier</key>
+        <string>io.easylogin.settings</string>
+        <key>PayloadOrganization</key>
+        <string></string>
+        <key>PayloadRemovalDisallowed</key>
+        <true />
+        <key>PayloadScope</key>
+        <string>System</string>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>BE155063-96CF-4134-B6BB-C3130B529F45</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>

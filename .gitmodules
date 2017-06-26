@@ -4,9 +4,6 @@
 [submodule "EasyLoginOD"]
 	path = EasyLoginOD
 	url = git@github.com:EasyLoginProject/EasyLoginOD.git
-[submodule "EasyLoginLibrary"]
-	path = EasyLoginLibrary
-	url = git@github.com:EasyLoginProject/EasyLoginLibrary.git
 [submodule "EasyLoginFrameworkForMac"]
 	path = EasyLoginFrameworkForMac
 	url = git@github.com:EasyLoginProject/EasyLoginFrameworkForMac.git

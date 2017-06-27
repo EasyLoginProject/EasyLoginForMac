@@ -1,22 +1,30 @@
 #!/bin/bash
 
-if [ -f /Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel ]
+if [ -f /Library/Preferences/OpenDirectory/Configurations/EasyLogin.plist ]
 then
     /Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel -action unload
 fi
 
-launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
+DB_STARTED=$(ps aux | grep EasyLoginDB | grep -v grep | wc -l | bc)
+if [ ${DB_STARTED} -eq 1 ]
+then
+    launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
+fi
 launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
 
-launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
+AGENT_STARTED=$(launchctl list io.easylogin.EasyLoginAgent | wc -l | bc)
+if [ ${AGENT_STARTED} -gt 0 ]
+then
+    launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
+fi
 launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
 
 /Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel -action load
 
-DSCL_USE_CSP=$(dscl /Search -read / SearchPolicy | grep CSPSearchPath | wc -l | bc)
-if [ ${DSCL_USE_CSP} -eq 0 ]
+CURRENT_SP=$(dscl /Search read / SearchPolicy | awk '{print $2}')
+if [ "${CURRENT_SP}" != "dsAttrTypeStandard:CSPSearchPath" ]
 then
-    dscl /Search -change / SearchPolicy dsAttrTypeStandard:LSPSearchPath dsAttrTypeStandard:CSPSearchPath
+    dscl /Search -change / SearchPolicy "${CURRENT_SP}" dsAttrTypeStandard:CSPSearchPath
 fi
 
 DSCL_USE_EASYLOGIN=$(dscl /Search -read / CSPSearchPath | grep EasyLogin | wc -l | bc)

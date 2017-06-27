@@ -3,12 +3,13 @@
 PROJECT_DIR="$(dirname $(dirname ${BASH_SOURCE[0]}))"
 BUILT_PRODUCTS_DIR="$(mktemp -d)"
 
+PKG_VERSION="0.$(git rev-list HEAD | wc -l | bc)"
+
 BASE_RELEASE_LOCATION="${PROJECT_DIR}/build"
-RELEASE_LOCATION="${BASE_RELEASE_LOCATION}/$(date '+%Y-%m-%d')"
+RELEASE_LOCATION="${BASE_RELEASE_LOCATION}/${PKG_VERSION}"
 RELEASE_PRODUCT_LOCATION="${RELEASE_LOCATION}/Products"
 RELEASE_DSYM_LOCATION="${RELEASE_LOCATION}/dSYM"
 
-PKG_VERSION="$(date '+%Y.%m.%d')"
 PKG_ROOT="$(mktemp -d)"
 
 mkdir -p "${BUILT_PRODUCTS_DIR}/dSYM"
@@ -55,6 +56,7 @@ cp -r "${RELEASE_PRODUCT_LOCATION}/io.easylogin.EasyLoginOD.xpc" "${PKG_ROOT}/Li
 
 mkdir -p "${PKG_ROOT}/Library/LaunchDaemons"
 cp -r "${PROJECT_DIR}/EasyLoginFrameworkForMac/EasyLoginDB/io.easylogin.EasyLoginDB.plist" "${PKG_ROOT}/Library/LaunchDaemons"
+cp -r "${PROJECT_DIR}/EasyLoginAgentForMac/EasyLoginAgent/io.easylogin.EasyLoginAgent.plist" "${PKG_ROOT}/Library/LaunchDaemons"
 
 mkdir -p "${PKG_ROOT}/Library/EasyLogin/db"
 chmod 700 "${PKG_ROOT}/Library/EasyLogin/db"

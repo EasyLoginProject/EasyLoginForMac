@@ -2,7 +2,7 @@
 
 if [ -f /Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel ]
 then
-    /Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel unload
+    /Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel -action unload
 fi
 
 launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
@@ -11,7 +11,7 @@ launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
 launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
 launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
 
-/Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel load
+/Library/OpenDirectory/Modules/io.easylogin.EasyLoginOD.xpc/Contents/MacOS/dsconfigel -action load
 
 DSCL_USE_CSP=$(dscl /Search -read / SearchPolicy | grep CSPSearchPath | wc -l | bc)
 if [ ${DSCL_USE_CSP} -eq 0 ]

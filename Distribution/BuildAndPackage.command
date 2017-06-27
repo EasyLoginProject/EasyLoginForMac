@@ -1,12 +1,14 @@
 #!/bin/bash
 
+CONFIGURATION="Debug"
+
 PROJECT_DIR="$(dirname $(dirname ${BASH_SOURCE[0]}))"
 BUILT_PRODUCTS_DIR="$(mktemp -d)"
 
 PKG_VERSION="0.$(git rev-list HEAD | wc -l | bc)"
 
 BASE_RELEASE_LOCATION="${PROJECT_DIR}/build"
-RELEASE_LOCATION="${BASE_RELEASE_LOCATION}/${PKG_VERSION}"
+RELEASE_LOCATION="${BASE_RELEASE_LOCATION}/${PKG_VERSION}-${CONFIGURATION}"
 RELEASE_PRODUCT_LOCATION="${RELEASE_LOCATION}/Products"
 RELEASE_DSYM_LOCATION="${RELEASE_LOCATION}/dSYM"
 
@@ -27,7 +29,7 @@ for SCHEME_TO_BUILD in EasyLogin elctl EasyLoginAgent EasyLoginOD
 do
     echo "### Start building ${SCHEME_TO_BUILD}"
 
-    ARTEFACT_NAME=$(xcodebuild -workspace "${PROJECT_DIR}/EasyLogin.xcworkspace" -configuration Release -scheme ${SCHEME_TO_BUILD} -showBuildSettings | grep WRAPPER_NAME | sed "s/^[ \t]*//" | sed "s/WRAPPER_NAME = //")
+    ARTEFACT_NAME=$(xcodebuild -workspace "${PROJECT_DIR}/EasyLogin.xcworkspace" -configuration ${CONFIGURATION} -scheme ${SCHEME_TO_BUILD} -showBuildSettings | grep WRAPPER_NAME | sed "s/^[ \t]*//" | sed "s/WRAPPER_NAME = //")
 
     if [ -z "${ARTEFACT_NAME}" ]
     then
@@ -69,7 +71,7 @@ cp -r "${RELEASE_PRODUCT_LOCATION}/elctl" "${PKG_ROOT}/usr/local/bin"
 
 #sudo chown -R root:wheel "${PKG_ROOT}"
 
-pkgbuild --root "${PKG_ROOT}" --scripts "${PROJECT_DIR}/Distribution/pkg_scripts" --identifier "io.easylogin.EasyLoginForMac" --version "${PKG_VERSION}" "${RELEASE_LOCATION}/EasyLogin-${PKG_VERSION}.pkg"
+pkgbuild --root "${PKG_ROOT}" --scripts "${PROJECT_DIR}/Distribution/pkg_scripts" --identifier "io.easylogin.EasyLoginForMac" --version "${PKG_VERSION}" "${RELEASE_LOCATION}/EasyLogin-${PKG_VERSION}-${CONFIGURATION}.pkg"
 
 rm -rf "${PKG_ROOT}"
 

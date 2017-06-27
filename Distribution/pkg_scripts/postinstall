@@ -26,13 +26,13 @@ launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
 CURRENT_SP=$(dscl /Search read / SearchPolicy | awk '{print $2}')
 if [ "${CURRENT_SP}" != "dsAttrTypeStandard:CSPSearchPath" ]
 then
-#    dscl /Search -change / SearchPolicy "${CURRENT_SP}" dsAttrTypeStandard:CSPSearchPath
+    dscl /Search -change / SearchPolicy "${CURRENT_SP}" dsAttrTypeStandard:CSPSearchPath
 fi
 
 DSCL_USE_EASYLOGIN=$(dscl /Search -read / CSPSearchPath | grep EasyLogin | wc -l | bc)
 if [ ${DSCL_USE_EASYLOGIN} -eq 0 ]
 then
-#    dscl /Search -append / CSPSearchPath "/EasyLogin"
+    dscl /Search -append / CSPSearchPath "/EasyLogin"
 fi
 
 killall opendirectoryd

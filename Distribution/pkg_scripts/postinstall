@@ -6,4 +6,18 @@ launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginDB.plist
 launchctl unload /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
 launchctl load /Library/LaunchDaemons/io.easylogin.EasyLoginAgent.plist
 
+DSCL_USE_CSP=$(dscl /Search -read / SearchPolicy | grep CSPSearchPath | wc -l | bc)
+if [ ${DSCL_USE_CSP} -eq 0 ]
+then
+    dscl /Search -change / SearchPolicy dsAttrTypeStandard:LSPSearchPath dsAttrTypeStandard:CSPSearchPath
+fi
+
+DSCL_USE_EASYLOGIN=$(dscl /Search -read / CSPSearchPath | grep EasyLogin | wc -l | bc)
+if [ ${DSCL_USE_EASYLOGIN} -eq 0 ]
+then
+    dscl /Search -append / CSPSearchPath "/EasyLogin"
+fi
+
+killall opendirectoryd
+
 exit 0

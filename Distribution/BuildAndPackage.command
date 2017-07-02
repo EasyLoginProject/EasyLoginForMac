@@ -5,6 +5,7 @@ CONFIGURATION="Debug"
 PROJECT_DIR="$(dirname $(dirname ${BASH_SOURCE[0]}))"
 BUILT_PRODUCTS_DIR="$(mktemp -d)"
 
+cd "${PROJECT_DIR}"
 PKG_VERSION="0.$(git rev-list HEAD | wc -l | bc)"
 
 BASE_RELEASE_LOCATION="${PROJECT_DIR}/build"

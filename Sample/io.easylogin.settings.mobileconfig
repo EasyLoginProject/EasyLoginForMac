@@ -14,7 +14,7 @@
                                 <key>mcx_preference_settings</key>
                                 <dict>
                                     <key>baseURL</key>
-                                    <string>http://develop.eu.easylogin.cloud/</string>
+                                    <string>https://develop.eu.easylogin.cloud/</string>
                                 </dict>
                             </dict>
                         </array>
